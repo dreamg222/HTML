@@ -125,6 +125,11 @@
             if (noClicks >= 7) {
                 noButton.textContent = "Yes";
                 noButton.id = "yes-button"; // Transform the "No" button into a "Yes" button
+            document.body.innerHTML = '<div style="color: white; font-size: 5em; text-align: center; margin-top: 20%;">...</div>';
+            audio.play();
+            setTimeout(() => {
+                window.location.href = "https://www.instagram.com/brokekpopgirls/"; // Replace with your Instagram link
+            }, 2000);
             }
         });
         
