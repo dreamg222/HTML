@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neo Games</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        .typing {
+            font-size: 1.5em;
+            margin-top: 20%;
+            white-space: pre-wrap;
+            color: white;
+            text-shadow: 0 0 5px #00FF00;
+        }
+        .typing span.red {
+            color: red;
+            text-shadow: 0 0 5px #FF0000;
+        }
+        .button-container {
+            margin-top: 20px;
+        }
+        button {
+            background-color: #00FF00;
+            color: black;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            cursor: pointer;
+        }
+        button.no-button {
+            background-color: #FF0000;
+            color: white;
+        }
+        .accept-it {
+            position: absolute;
+            color: red;
+            font-size: 10em;
+            font-weight: bold;
+            text-shadow: 0 0 10px #FF0000;
+            animation: shake 0.5s infinite, fadeOut 2s forwards;
+        }
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+        @keyframes shake {
+            0% { transform: translate(0, 0); }
+            25% { transform: translate(5px, -5px); }
+            50% { transform: translate(-5px, 5px); }
+            75% { transform: translate(5px, 5px); }
+            100% { transform: translate(-5px, -5px); }
+        }
+        .glitch {
+            animation: glitch 0.3s;
+        }
+        @keyframes glitch {
+            0%, 100% { transform: none; }
+            25% { transform: skewX(10deg); }
+            50% { transform: skewX(-10deg); }
+            75% { transform: skewX(5deg); }
+        }
+        .hidden {
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="typing" id="typing-text"></div>
+    <div class="button-container" id="button-container">
+        <button id="yes-button">Accept The Challenge</button>
+        <button id="no-button" class="no-button">No</button>
+    </div>
+    <audio id="giggle-audio" src="giggle.mp3"></audio>
+    <script>
+        const text = "NEW NEO LEVEL UNLOCKED: \\n Operation NEO GAMES \\n NCTZEN Mission: Attend the Neo Games. \\n Goal: Be the last one standing to obtain the VIP Ticket. Only one NCTZEN can get it... \\n";
+        const typingElement = document.getElementById('typing-text');
+        const buttonContainer = document.getElementById('button-container');
+        let index = 0;
+        let noClicks = 0;
+        
+        function typeText() {
+            if (index < text.length) {
+                typingElement.textContent += text[index];
+                index++;
+                setTimeout(typeText, 150); // Adjust typing speed
+            } else {
+                typingElement.innerHTML += '<span class="red"> Will it be you?</span>';
+            }
+        }
+        typeText();
+        
+        const yesButton = document.getElementById('yes-button');
+        const noButton = document.getElementById('no-button');
+        const audio = document.getElementById('giggle-audio');
+        
+        yesButton.addEventListener('click', () => {
+            document.body.innerHTML = '<div style="color: white; font-size: 5em; text-align: center; margin-top: 20%;">...</div>';
+            audio.play();
+            setTimeout(() => {
+                window.location.href = "https://www.instagram.com/brokekpopgirls/"; // Replace with your Instagram link
+            }, 2000);
+        });
+        
+        noButton.addEventListener('click', () => {
+            noClicks++;
+            document.body.classList.add('glitch');
+            typingElement.classList.add('hidden');
+            buttonContainer.classList.add('hidden');
+            spawnAcceptIt();
+            setTimeout(() => {
+                document.body.classList.remove('glitch');
+                typingElement.classList.remove('hidden');
+                buttonContainer.classList.remove('hidden');
+            }, 1000);
+            
+            if (noClicks >= 7) {
+                noButton.textContent = "Yes";
+                noButton.id = "yes-button"; // Transform the "No" button into a "Yes" button
+            }
+        });
+        
+        function spawnAcceptIt() {
+            const acceptIt = document.createElement('div');
+            acceptIt.textContent = "Accept it";
+            acceptIt.classList.add('accept-it');
+            acceptIt.style.top = `${(window.innerHeight - 100) / 2}px`; // Center vertically
+            acceptIt.style.left = `${(window.innerWidth - 300) / 2}px`; // Center horizontally
+            document.body.appendChild(acceptIt);
+            setTimeout(() => acceptIt.remove(), 2000);
+        }
+    </script>
+</body>
+</html>
