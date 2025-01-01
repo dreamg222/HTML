@@ -81,7 +81,7 @@
     </div>
     <audio id="giggle-audio" src="giggle.mp3"></audio>
     <script>
-        const text = "NEW NEO LEVEL UNLOCKED: \\n Operation NEO GAMES \\n NCTZEN Mission: Attend the Neo Games. \\n Goal: Be the last one standing to obtain the VIP Ticket. Only one NCTZEN can get it... \\n";
+        const text = "NEW NEO LEVEL UNLOCKED: \n Operation NEO GAMES \n NCTZEN Mission: Attend the Neo Games. \n Goal: Be the last one standing to obtain the VIP Ticket. Only one NCTZEN can get it... \n";
         const typingElement = document.getElementById('typing-text');
         const buttonContainer = document.getElementById('button-container');
         let index = 0;
@@ -122,7 +122,7 @@
                 buttonContainer.classList.remove('hidden');
             }, 1000);
             
-            if (noClicks = 8) {
+            if (noClicks >= 8) {
                 noButton.textContent = "Yes";
                 noButton.id = "yes-button"; // Transform the "No" button into a "Yes" button after 8 clicks
             }
