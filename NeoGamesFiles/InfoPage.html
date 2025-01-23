@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neo Games Info Site</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #DFFF00; /* Neon Champagne Green */
+            color: #000;
+            margin: 0;
+            padding: 0;
+        }
+
+        .section {
+            padding: 20px;
+            border-bottom: 1px solid #000;
+        }
+
+        #confirmation {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #continue-button {
+            background-color: #00FF00; /* Neon Green */
+            color: #000;
+            font-size: 1.5em;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        #continue-button:hover {
+            background-color: #00CC00;
+        }
+
+        .black-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            visibility: hidden;
+        }
+
+        .black-screen.active {
+            visibility: visible;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="content">
+        <div class="section" id="disclaimer">
+            <h2>Disclaimer</h2>
+            <p>All participants must adhere to the rules and regulations outlined on this page. Participation is at your own risk.</p>
+        </div>
+
+        <div class="section" id="summary">
+            <h2>Summary</h2>
+            <p>Welcome to Neo Games! Compete in a series of games for a chance to win amazing prizes.</p>
+        </div>
+
+        <div class="section" id="requirements">
+            <h2>Requirements/Qualifications</h2>
+            <p>Participants must be 18 years or older and reside in NYC. A valid ID is required for verification.</p>
+        </div>
+
+        <div class="section" id="forms">
+            <h2>Forms & Registration To Sign Up</h2>
+            <p>Fill out the necessary forms and register through the provided link to secure your spot.</p>
+        </div>
+
+        <div class="section" id="games">
+            <h2>Games & Description</h2>
+            <p>Test your skills in five unique games designed to challenge your mind and body.</p>
+        </div>
+
+        <div class="section" id="prizes">
+            <h2>Prize Information</h2>
+            <p>The winner will receive a VIP ticket to a prestigious event. Additional surprises await!</p>
+        </div>
+
+        <div class="section" id="disqualification">
+            <h2>Disqualification & Privacy Agreement</h2>
+            <p>Failure to meet requirements or breaking the rules will result in disqualification. Personal information will be protected as per our privacy agreement.</p>
+        </div>
+
+        <div id="confirmation">
+            <label>
+                <input type="checkbox" id="confirm-checkbox">
+                I have read all the above information thoroughly. I acknowledge that I understand the information provided and agree to follow the rules. I also acknowledge that I will be unable to participate if I do not fit the requirements AND qualifications for this event.
+            </label>
+            <br>
+            <button id="submit-button" class="hidden">Submit</button>
+        </div>
+    </div>
+
+    <div id="black-screen" class="black-screen">
+        <button id="continue-button" onclick="window.location.href='https://partiful.com/your-signup-link';">CONTINUE</button>
+    </div>
+
+    <script>
+        const checkbox = document.getElementById('confirm-checkbox');
+        const submitButton = document.getElementById('submit-button');
+        const blackScreen = document.getElementById('black-screen');
+        const content = document.getElementById('content');
+
+        checkbox.addEventListener('change', () => {
+            if (checkbox.checked) {
+                submitButton.classList.remove('hidden');
+            } else {
+                submitButton.classList.add('hidden');
+            }
+        });
+
+        submitButton.addEventListener('click', () => {
+            content.style.display = 'none';
+            blackScreen.classList.add('active');
+        });
+    </script>
+
+</body>
+</html>
